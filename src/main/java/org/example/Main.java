@@ -20,18 +20,8 @@ public class Main {
         MenuController  menuController=(MenuController) context.getBean("menuController");
         menuController.start();
 
-        System.out.println("Hello world");
-<<<<<<< HEAD
 
-        System.out.println("test1");
-        System.out.println("test1");
-        System.out.println("test1");
 
-=======
-        System.out.println("ddfdf");
-        System.out.println("ddfdf");
-        System.out.println("ddfdf");
->>>>>>> master
 
 
 
