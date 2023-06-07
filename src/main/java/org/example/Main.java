@@ -21,11 +21,17 @@ public class Main {
         menuController.start();
 
         System.out.println("Hello world");
+<<<<<<< HEAD
 
         System.out.println("test1");
         System.out.println("test1");
         System.out.println("test1");
 
+=======
+        System.out.println("ddfdf");
+        System.out.println("ddfdf");
+        System.out.println("ddfdf");
+>>>>>>> master
 
 
 
