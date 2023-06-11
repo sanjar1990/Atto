@@ -20,6 +20,8 @@ public class Main {
         MenuController  menuController=(MenuController) context.getBean("menuController");
         menuController.start();
 
+        System.out.println("Hello world");
+
 
 
 
