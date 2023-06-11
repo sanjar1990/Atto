@@ -19,7 +19,8 @@ public class Main {
         dbInit.createCompanyCard();
         MenuController  menuController=(MenuController) context.getBean("menuController");
         menuController.start();
-
+        System.out.println("Hello world");
+        System.out.println("Hello world");
 
 
 
