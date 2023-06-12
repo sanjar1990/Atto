@@ -7,6 +7,7 @@ import org.example.container.ComponentContainer;
 import org.example.dto.ProfileDto;
 import org.example.service.ProfileService;
 import org.example.util.GetAction;
+import org.springframework.beans.factory.InitializingBean;
 
 @Data
 @NoArgsConstructor
@@ -56,5 +57,10 @@ public class MenuController {
         System.out.println("Enter your password");
         String password=ComponentContainer.stringScanner.nextLine();
         profileService.login(login, password);
+    }
+
+
+    public void after() {
+        System.out.println("After world");
     }
 }
