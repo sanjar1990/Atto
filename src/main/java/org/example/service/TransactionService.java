@@ -13,6 +13,8 @@ import org.example.repository.TerminalRepo;
 import org.example.repository.TransactionRepo;
 import org.example.repository.UserRepo;
 import org.example.util.CheckValidationUtil;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
 
 import java.time.LocalDate;
 import java.time.LocalDateTime;
@@ -21,12 +23,19 @@ import java.util.List;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
+@Component
 public class TransactionService {
+    @Autowired
     private AdminService adminService;
+    @Autowired
     private UserRepo userRepo;
+    @Autowired
     private TransactionRepo transactionRepo;
+    @Autowired
     private AdminRepo adminRepo;
+    @Autowired
     private TerminalRepo terminalRepo;
+    @Autowired
     private CheckValidationUtil checkValidationUtil;
 
     public void refillCard(int cardNum, double amount) {

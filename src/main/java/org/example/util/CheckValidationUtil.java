@@ -9,12 +9,17 @@ import org.example.dto.TerminalDto;
 import org.example.enums.TerminalStatus;
 import org.example.repository.TerminalRepo;
 import org.example.repository.UserRepo;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
 
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
+@Component
 public class CheckValidationUtil {
+    @Autowired
     private  UserRepo userRepo;
+    @Autowired
     private TerminalRepo terminalRepo;
 
     public static boolean isValidPhone(String phone){

@@ -14,19 +14,24 @@ import org.example.repository.ProfileRepo;
 import org.example.repository.UserRepo;
 import org.example.util.CheckValidationUtil;
 import org.example.util.DBConnection;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
 
 import java.sql.Connection;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
-
+@Component
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
 public class DBInit {
+    @Autowired
     private  UserRepo userRepo;
+    @Autowired
     private AdminRepo adminRepo;
+    @Autowired
     private ProfileRepo profileRepo;
     public  void createCompanyCard(){
         CardDto cardDto= new CardDto();

@@ -6,12 +6,16 @@ import org.example.container.ComponentContainer;
 import org.example.dto.CardDto;
 import org.example.enums.CardStatus;
 import org.example.repository.UserRepo;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
 
 import java.util.List;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
+@Component
 public class UserService {
+    @Autowired
     private UserRepo userRepo;
     public void addCard(int cardNum, int year, int month){
         //Check valid Card

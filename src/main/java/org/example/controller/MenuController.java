@@ -8,12 +8,15 @@ import org.example.dto.ProfileDto;
 import org.example.service.ProfileService;
 import org.example.util.GetAction;
 import org.springframework.beans.factory.InitializingBean;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
 
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
+@Component
 public class MenuController {
-
+    @Autowired
     private ProfileService profileService;
     public void start(){
         boolean t=true;

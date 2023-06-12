@@ -13,6 +13,8 @@ import org.example.enums.TransactionType;
 import org.example.repository.AdminRepo;
 import org.example.repository.TransactionRepo;
 import org.example.repository.UserRepo;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
 
 import java.time.LocalDate;
 import java.time.LocalDateTime;
@@ -21,9 +23,13 @@ import java.util.List;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
+@Component
 public class AdminService {
+    @Autowired
     private AdminRepo adminRepo;
+    @Autowired
     private UserRepo userRepo;
+    @Autowired
     private TransactionRepo transactionRepo;
     public void createCard(int cardNum, int year ,int month){
         //Check card

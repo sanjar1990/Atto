@@ -3,11 +3,13 @@ package org.example.repository;
 import org.example.dto.CardDto;
 import org.example.enums.CardStatus;
 import org.example.util.DBConnection;
+import org.springframework.stereotype.Component;
+import org.springframework.stereotype.Repository;
 
 import java.sql.*;
 import java.util.LinkedList;
 import java.util.List;
-
+@Repository
 public class UserRepo {
     public CardDto checkCardByNum(int cardNum){
         Connection connection= DBConnection.getConnection();

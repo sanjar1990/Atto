@@ -11,6 +11,8 @@ import org.example.service.AdminService;
 import org.example.service.TerminalService;
 import org.example.service.TransactionService;
 import org.example.util.GetAction;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
 
 import java.time.LocalDate;
 import java.time.LocalDateTime;
@@ -18,9 +20,13 @@ import java.time.LocalDateTime;
 @NoArgsConstructor
 @AllArgsConstructor
 @Data
+@Component
 public class AdminController {
+    @Autowired
     private AdminService adminService;
+    @Autowired
     private TransactionService transactionService;
+    @Autowired
     private TerminalService terminalService;
     public void start(){
         boolean t=true;

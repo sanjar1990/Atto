@@ -3,11 +3,13 @@ package org.example.repository;
 import org.example.dto.TerminalDto;
 import org.example.enums.TerminalStatus;
 import org.example.util.DBConnection;
+import org.springframework.stereotype.Component;
+import org.springframework.stereotype.Repository;
 
 import java.sql.*;
 import java.util.LinkedList;
 import java.util.List;
-
+@Repository
 public class TerminalRepo {
     public TerminalDto checkTerminalByNum(int terminalNum) {
         Connection connection= DBConnection.getConnection();

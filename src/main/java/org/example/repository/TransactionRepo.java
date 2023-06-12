@@ -5,12 +5,14 @@ import org.example.dto.TerminalDto;
 import org.example.dto.TransactionDto;
 import org.example.enums.TransactionType;
 import org.example.util.DBConnection;
+import org.springframework.stereotype.Component;
+import org.springframework.stereotype.Repository;
 
 import java.sql.*;
 import java.time.LocalDate;
 import java.util.LinkedList;
 import java.util.List;
-
+@Repository
 public class TransactionRepo {
     public boolean addTransactionInfo(TransactionDto transactionDto) {
         Connection connection= DBConnection.getConnection();

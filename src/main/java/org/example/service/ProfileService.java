@@ -11,15 +11,20 @@ import org.example.enums.ProfileRole;
 import org.example.enums.ProfileStatus;
 import org.example.repository.ProfileRepo;
 import org.example.util.CheckValidationUtil;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
 
 import java.time.LocalDateTime;
-
+@Component
 @NoArgsConstructor
 @AllArgsConstructor
 @Data
 public class ProfileService {
+    @Autowired
     private ProfileRepo profileRepo;
+    @Autowired
     private UserController userController;
+    @Autowired
     private AdminController adminController;
     public void register(ProfileDto profileDto){
         // validate phoneNumber

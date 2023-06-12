@@ -7,11 +7,17 @@ import org.example.container.ComponentContainer;
 import org.example.service.TransactionService;
 import org.example.service.UserService;
 import org.example.util.GetAction;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
+
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
+@Component
 public class UserController {
+    @Autowired
     private UserService userService;
+    @Autowired
     private TransactionService transactionService;
     public void start(){
         boolean t=true;

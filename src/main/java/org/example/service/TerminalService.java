@@ -7,6 +7,8 @@ import org.example.container.ComponentContainer;
 import org.example.dto.TerminalDto;
 import org.example.enums.TerminalStatus;
 import org.example.repository.TerminalRepo;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
 
 import java.time.LocalDateTime;
 import java.util.List;
@@ -14,7 +16,9 @@ import java.util.List;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
+@Component
 public class TerminalService {
+    @Autowired
     private TerminalRepo terminalRepo;
     public void createTerminal(int terminalCode, String address) {
         TerminalDto terminalDto=terminalRepo.checkTerminalByNum(terminalCode);
