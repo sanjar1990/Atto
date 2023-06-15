@@ -27,9 +27,9 @@ public class TerminalService {
             return;
         }
         terminalDto=new TerminalDto();
-        terminalDto.setTerminalStatus(TerminalStatus.ACTIVE);
+        terminalDto.setStatus(TerminalStatus.ACTIVE);
         terminalDto.setCreated_date(LocalDateTime.now());
-        terminalDto.setTerminalCode(terminalCode);
+        terminalDto.setCode(terminalCode);
         terminalDto.setAddress(address);
         boolean result=terminalRepo.createTerminal(terminalDto);
     if (result){

@@ -32,8 +32,8 @@ public class ProfileService {
             return;
         }
         //Check phone and user unique
-        ProfileDto isExist1=profileRepo.getProfileByPhone(profileDto.getPhone());
-        ProfileDto isExist2=profileRepo.getProfileByLogin(profileDto.getPhone());
+        ProfileDto isExist1=profileRepo.getProfileByPhoneOrLogin(profileDto.getPhone());
+        ProfileDto isExist2=profileRepo.getProfileByPhoneOrLogin(profileDto.getLogin());
         if (isExist1 !=null) {
             System.out.println("This phone is already registered");
             return;

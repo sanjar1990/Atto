@@ -8,10 +8,7 @@ import org.example.dto.CardDto;
 import org.example.dto.TerminalDto;
 import org.example.dto.TransactionDto;
 import org.example.enums.TransactionType;
-import org.example.repository.AdminRepo;
-import org.example.repository.TerminalRepo;
-import org.example.repository.TransactionRepo;
-import org.example.repository.UserRepo;
+import org.example.repository.*;
 import org.example.util.CheckValidationUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
@@ -28,15 +25,13 @@ public class TransactionService {
     @Autowired
     private AdminService adminService;
     @Autowired
-    private UserRepo userRepo;
-    @Autowired
     private TransactionRepo transactionRepo;
-    @Autowired
-    private AdminRepo adminRepo;
     @Autowired
     private TerminalRepo terminalRepo;
     @Autowired
     private CheckValidationUtil checkValidationUtil;
+    @Autowired
+    private CardRepo cardRepo;
 
     public void refillCard(int cardNum, double amount) {
         //Check
@@ -46,13 +41,13 @@ public class TransactionService {
         //commissiya qo'shish
         adminService.setCommission(amount*0.05);
         //user cardga balance qo'shish
-        boolean result=userRepo.refillCard(cardDto);
+        boolean result=cardRepo.refillCard(cardDto);
         //transaction history
         TransactionDto transactionDto= new TransactionDto();
-        transactionDto.setTransactionType(TransactionType.REFILL);
-        transactionDto.setCardNumber(cardDto.getCardNumber());
+        transactionDto.setType(TransactionType.REFILL);
+        transactionDto.setCard_number(cardDto.getCard_number());
         transactionDto.setAmount(amount);
-        transactionDto.setCreatedDate(LocalDateTime.now());
+        transactionDto.setCreated_date(LocalDateTime.now());
         transactionRepo.addTransactionInfo(transactionDto);
         if(result){
             System.out.println("You successfully deposited money to your card");
@@ -78,30 +73,30 @@ public class TransactionService {
         }
         //user cardan fare ayirish
         cardDto.setBalance(cardDto.getBalance()-ComponentContainer.fare);
-        boolean result =userRepo.refillCard(cardDto);
+        boolean result =cardRepo.refillCard(cardDto);
         // user Transaction history
         TransactionDto transactionDto= new TransactionDto();
-        transactionDto.setCardNumber(cardDto.getCardNumber());
-        transactionDto.setTransactionType(TransactionType.PAYMENT);
+        transactionDto.setCard_number(cardDto.getCard_number());
+        transactionDto.setType(TransactionType.PAYMENT);
         transactionDto.setAmount(ComponentContainer.fare);
-        transactionDto.setCreatedDate(LocalDateTime.now());
-        transactionDto.setTerminalCode(terminalDto.getTerminalCode());
+        transactionDto.setCreated_date(LocalDateTime.now());
+        transactionDto.setTerminal_code(terminalDto.getCode());
         transactionRepo.addTransactionInfo(transactionDto);
         //admin cardga pul qo'shish
-        CardDto adminCard= adminRepo.getAdminCard();
+        CardDto adminCard= cardRepo.getAdminCard();
         if(adminCard==null){
             System.out.println("Admin Card not found!");
             return;
         }
         adminCard.setBalance(adminCard.getBalance()+ComponentContainer.fare);
-        userRepo.refillCard(adminCard);
+        cardRepo.refillCard(adminCard);
        //Admin Card Transaction yozish
 //        TransactionDto adminTransaction= new TransactionDto();
-        transactionDto.setCardNumber(adminCard.getCardNumber());
-        transactionDto.setTransactionType(TransactionType.PAYMENT);
+        transactionDto.setCard_number(adminCard.getCard_number());
+        transactionDto.setType(TransactionType.PAYMENT);
         transactionDto.setAmount(ComponentContainer.fare);
-        transactionDto.setCreatedDate(LocalDateTime.now());
-        transactionDto.setTerminalCode(terminalDto.getTerminalCode());
+        transactionDto.setCreated_date(LocalDateTime.now());
+        transactionDto.setTerminal_code(terminalDto.getCode());
         transactionRepo.addTransactionInfo(transactionDto);
         if(result){
             System.out.println("Payment was completed successful");
@@ -148,7 +143,7 @@ public class TransactionService {
         }
     }
     public void getTransactionByCard(int cardNum) {
-        CardDto cardDto=checkValidationUtil.checkCard(cardNum);
+        CardDto cardDto=cardRepo.checkCardByNum(cardNum);
         if(cardDto==null){
             return;
         }

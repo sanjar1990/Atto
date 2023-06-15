@@ -7,8 +7,8 @@ import org.example.container.ComponentContainer;
 import org.example.dto.CardDto;
 import org.example.dto.TerminalDto;
 import org.example.enums.TerminalStatus;
+import org.example.repository.CardRepo;
 import org.example.repository.TerminalRepo;
-import org.example.repository.UserRepo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
@@ -17,10 +17,11 @@ import org.springframework.stereotype.Component;
 @NoArgsConstructor
 @Component
 public class CheckValidationUtil {
-    @Autowired
-    private  UserRepo userRepo;
+
     @Autowired
     private TerminalRepo terminalRepo;
+    @Autowired
+    private CardRepo cardRepo;
 
     public static boolean isValidPhone(String phone){
         if(phone.length()<12 || !phone.startsWith("998") ){
@@ -31,11 +32,11 @@ public class CheckValidationUtil {
     }
 
     public  CardDto checkCard(int cardNum){
-        CardDto cardDto=userRepo.checkCardByNum(cardNum);
+        CardDto cardDto=cardRepo.checkCardByNum(cardNum);
         if(cardDto==null){
             System.out.println("Card was not found!");
             return null;
-        } else if (!cardDto.getUserPhone().equals(ComponentContainer.profileDto.getPhone())) {
+        } else if (!cardDto.getPhone().equals(ComponentContainer.profileDto.getPhone())) {
             System.out.println("Card not belongs to you");
             return null;
         }
@@ -47,7 +48,7 @@ public class CheckValidationUtil {
         if(terminalDto==null){
             System.out.println("Terminal not exist");
             return null;
-        }else if(!terminalDto.getTerminalStatus().equals(TerminalStatus.ACTIVE)){
+        }else if(!terminalDto.getStatus().equals(TerminalStatus.ACTIVE)){
             System.out.println("Terminal is out of order");
         return null;
         }
