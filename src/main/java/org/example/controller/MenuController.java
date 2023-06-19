@@ -11,6 +11,8 @@ import org.springframework.beans.factory.InitializingBean;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
+import java.util.Scanner;
+
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
@@ -18,6 +20,10 @@ import org.springframework.stereotype.Component;
 public class MenuController {
     @Autowired
     private ProfileService profileService;
+    @Autowired
+    private Scanner scanner;
+    @Autowired
+    private Scanner scannerLine;
     public void start(){
         boolean t=true;
         while (t){

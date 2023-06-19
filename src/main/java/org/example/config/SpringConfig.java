@@ -9,6 +9,7 @@ import org.springframework.jdbc.datasource.DriverManagerDataSource;
 import javax.sql.DataSource;
 import java.sql.Driver;
 import java.sql.DriverManager;
+import java.util.Scanner;
 
 @Configuration
 @ComponentScan(basePackages = "org.example")
@@ -29,5 +30,13 @@ public class SpringConfig {
         JdbcTemplate jdbcTemplate= new JdbcTemplate();
         jdbcTemplate.setDataSource(dataSource);
         return jdbcTemplate;
+    }
+    @Bean
+    public Scanner scanner(){
+        return new Scanner(System.in);
+    }
+    @Bean
+    public Scanner scannerLine(){
+        return new Scanner(System.in);
     }
 }
